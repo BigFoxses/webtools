@@ -1,0 +1,66 @@
+git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+Cloning into '/home/jess/.tfenv'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 1105 (delta 8), reused 10 (delta 2), pack-reused 1084
+Receiving objects: 100% (1105/1105), 216.01 KiB | 2.84 MiB/s, done.
+Resolving deltas: 100% (703/703), done.
+If you prefer Homebrew, you can use:
+
+$ brew install tfenv
+Export your path into your Bash profile:
+
+jess@Athena:~$ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
+If you want to use just the base commands for Ubuntu/Debian-based systems, there is another option that makes things a little easier. After doing the clone in the .tfenv directory, set your profile to put the tfenv command into your profile in your next session:
+
+jess@Athena:~/.tfenv$ . ~/.profile
+Once the profile is set, you can symlink your directory to your .local/bin directory to make tfenv an executable binary:
+
+jess@Athena:~/.tfenv$ ln -s ~/.tfenv/bin/* ~/.local/bin
+Run the which command, and you should see tfenv's location:
+
+jess@Athena:~/.tfenv$ which tfenv
+/home/jess/.local/bin/tfenv
+How to use tfenv
+Now that everything is installed, check out what commands are available:
+
+jess@Athena:~$ tfenv
+tfenv 2.0.0-37-g0494129
+Usage: tfenv <command> [<options>]
+
+Commands:
+   install      Install a specific version of Terraform
+   use          Switch a version to use
+   uninstall    Uninstall a specific version of Terraform
+   list         List all installed versions
+   list-remote  List all installable versions
+As you can see, it's a pretty straightforward tool that enables you to install and uninstall Terraform versions as needed.
+
+Before you decide what to install, check which versions are available. This is a small snippet, as the list is about a mile long:
+
+jess@Athena:~$ tfenv list-remote
+0.14.0-beta1
+0.14.0-alpha20201007
+0.14.0-alpha20200923
+0.14.0-alpha20200910
+0.13.5
+0.13.4
+0.13.3
+0.13.2
+0.13.1
+0.13.0
+0.13.0-rc1
+0.13.0-beta3
+0.13.0-beta2
+0.13.0-beta1
+0.12.29
+0.12.28
+0.12.27
+Install Terraform versions
+To install the latest version of Terraform:
+
+jess@Athena:~$ tfenv install latest
+Installing Terraform v0.13.5
+Downloading release tarball from https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+#####################################
