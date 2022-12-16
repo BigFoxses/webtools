@@ -1,0 +1,5 @@
+curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/master/install-nix.sh | bash
+Invoke-WebRequest https://github.com/epi052/feroxbuster/releases/latest/download/x86_64-windows-feroxbuster.exe.zip -OutFile feroxbuster.zip
+Expand-Archive .\feroxbuster.zip
+.\feroxbuster\feroxbuster.exe -V
+
