@@ -1,0 +1,35 @@
+Resources:
+  CollaboratorRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+          - Effect: Allow
+            Principal:
+              AWS: "arn:aws:iam::531421766567:role/Feder08"
+            Action: "sts:AssumeRole"
+      Description: Role used by my collaborators
+      MaxSessionDuration: 7200
+  CollaboratorPolicy:
+    Type: AWS::IAM::Policy
+    Properties: 
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:*'
+            Resource: 'arn:aws:s3:::shared-bucket-for-my-cool-startup'
+            Condition:
+              StringEquals:
+                s3:prefix:
+                 - "myfolder/*"
+      PolicyName: S3ReadSpecificFolder
+      Roles: 
+        - !Ref CollaboratorRole
+Outputs:
+  CollaboratorRoleArn:
+    Description: Arn for the Collaborator's Role
+    Value: !GetAtt CollaboratorRole.Arn
+
